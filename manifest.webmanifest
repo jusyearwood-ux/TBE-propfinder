@@ -1,0 +1,10 @@
+{
+  "name": "TBE PropFinder",
+  "short_name": "TBE Props",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#101827",
+  "description": "Private TBE sports prop research dashboard",
+  "icons": []
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Private TBE sports prop research dashboard">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>TBE PropFinder</title>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="mark">TBE</div><div><h1>PROP FINDER</h1><p>SPORTS INTELLIGENCE LAB</p></div></div>
+  <span class="pill">PRIVATE BUILD · V0.1</span>
+</header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">YOUR PERSONAL ANALYTICS WORKSPACE</p>
+    <h2>Find the evidence.<br><span>Question the price.</span></h2>
+    <p class="muted">NBA + football research, built around your own filters.</p>
+  </section>
+  <nav class="tabs" aria-label="Sport">
+    <button class="tab active" data-sport="NBA">NBA</button>
+    <button class="tab" data-sport="Football">FOOTBALL</button>
+  </nav>
+  <section class="panel">
+    <div class="panel-head"><div><p class="eyebrow">SCANNER</p><h3 id="scannerTitle">NBA prop scanner</h3></div><span class="dot">● READY</span></div>
+    <div class="filters">
+      <label>Market
+        <select id="market">
+          <option>Assists</option><option>Rebounds</option><option>Points</option>
+          <option>PRA</option><option>RA</option><option>PR</option><option>PA</option>
+          <option>3-pointers</option><option>Shots</option><option>Shots on target</option>
+          <option>Corners</option><option>Cards</option><option>Goals</option>
+        </select>
+      </label>
+      <label>Milestone / line
+        <input id="line" type="number" min="0" step="0.5" value="3">
+      </label>
+      <label>Decimal odds (optional)
+        <input id="odds" type="number" min="1.01" step="0.01" placeholder="e.g. 1.35">
+      </label>
+      <label>Minutes filter (NBA only)
+        <input id="minutes" type="number" min="0" value="28">
+      </label>
+    </div>
+    <div class="actions">
+      <button class="primary" id="analyse">Analyse imported data</button>
+      <button class="secondary" id="sample">Load sample data</button>
+    </div>
+    <div id="results" class="results"><div class="empty">Import a CSV or load sample data to run your first scan.</div></div>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><div><p class="eyebrow">DATA INPUT</p><h3>Player / team game logs</h3></div></div>
+    <p class="muted small">Upload a CSV with columns: name, sport, market, date, value, minutes, opponent, home_away. One row per player/team per match.</p>
+    <label class="upload"> <span>Choose CSV file</span><input id="csvFile" type="file" accept=".csv,text/csv"></label>
+    <p id="fileStatus" class="small muted">No file loaded. Your imported data stays in this browser session.</p>
+    <div class="actions"><button class="secondary" id="downloadTemplate">Download CSV template</button><button class="secondary" id="clear">Clear data</button></div>
+  </section>
+  <section class="panel">
+    <p class="eyebrow">MODEL RULES</p><h3>Evidence before picks</h3>
+    <ul class="rules">
+      <li>Show L5, L10 and L20 hit rates where sample size allows.</li>
+      <li>Separate historical hit rate from estimated future probability.</li>
+      <li>Compare odds with probability only after checking price and margin.</li>
+      <li>Flag small samples, role changes and missing injury information.</li>
+      <li>No auto-bets. Research and record-keeping only.</li>
+    </ul>
+  </section>
+</main>
+<footer>TBE PROP FINDER · V0.1 · Research tool, not betting advice</footer>
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
